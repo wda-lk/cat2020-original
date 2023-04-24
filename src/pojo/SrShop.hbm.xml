@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2020 11:48:33 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.SrShop" table="sr_shop"  optimistic-lock="version">
+        <id name="idsrShop" type="java.lang.Integer">
+            <column name="idsr_shop" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="office" class="pojo.Office" fetch="select">
+            <column name="sub_office_id" />
+        </many-to-one>
+        <many-to-one name="srBuilding" class="pojo.SrBuilding" fetch="select">
+            <column name="sr_building_idsr_building" not-null="true" />
+        </many-to-one>
+        <many-to-one name="srFlow" class="pojo.SrFlow" fetch="select">
+            <column name="sr_flow_idsr_flow" not-null="true" />
+        </many-to-one>
+        <many-to-one name="srShopType" class="pojo.SrShopType" fetch="select">
+            <column name="sr_shop_type_idsr_shop_type" />
+        </many-to-one>
+        <property name="srShopNo" type="string">
+            <column name="sr_shop_no" length="100" />
+        </property>
+        <property name="srShopNumber" type="java.lang.Integer">
+            <column name="sr_shop_number" />
+        </property>
+        <property name="srShopStatus" type="java.lang.Integer">
+            <column name="sr_shop_status" />
+        </property>
+        <property name="srShopDis" type="string">
+            <column name="sr_shop_dis" length="65535" />
+        </property>
+        <property name="cusname" type="string">
+            <column name="cusname" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="65535" />
+        </property>
+        <property name="customerIdCustomer" type="java.lang.Integer">
+            <column name="Customer_idCustomer" />
+        </property>
+        <property name="srShopFineProcCategoryId" type="java.lang.Integer">
+            <column name="sr_shop_fine_proc_category_id" />
+        </property>
+        <set name="srShopNows" table="sr_shop_now" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sr_shop_id" />
+            </key>
+            <one-to-many class="pojo.SrShopNow" />
+        </set>
+        <set name="srShopHasVotes" table="sr_shop_has_vote" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vote_shop_id" />
+            </key>
+            <one-to-many class="pojo.SrShopHasVote" />
+        </set>
+    </class>
+</hibernate-mapping>

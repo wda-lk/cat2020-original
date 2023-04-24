@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2020 11:48:33 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.SrStatus" table="sr_status"  optimistic-lock="version">
+        <id name="srStatusId" type="int">
+            <column name="sr_status_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="srStatus" type="string">
+            <column name="sr_status" length="20" />
+        </property>
+        <set name="srShopNows" table="sr_shop_now" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sr_shop_now_status" />
+            </key>
+            <one-to-many class="pojo.SrShopNow" />
+        </set>
+    </class>
+</hibernate-mapping>
